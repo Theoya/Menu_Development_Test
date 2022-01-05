@@ -10,10 +10,11 @@ public class ContainerDetails : MonoBehaviour
     public Sprite occupantSprite = null;
     public Sprite blankSprite = null;
 
+
+
     public void SetOccupant(GameObject occupant){
         this.occupant = occupant;
-        this.occupantSprite = occupant.GetComponent<ItemHandler>().itemSprite;
-        GetComponent<Image>().sprite = this.occupantSprite;
+        updateSprite();
     }
 
     public GameObject GetOccupant(){
@@ -32,6 +33,16 @@ public class ContainerDetails : MonoBehaviour
         this.occupant = null;
         this.occupantSprite = null;
         GetComponent<Image>().sprite = this.blankSprite;
+    }
+
+    public void updateSprite(){
+        if (this.occupant != null){
+            this.occupantSprite = occupant.GetComponent<ItemHandler>().itemSprite;
+            GetComponent<Image>().sprite = this.occupantSprite;
+        }
+        else{
+            ClearSlate();
+        }
     }
 
 }
